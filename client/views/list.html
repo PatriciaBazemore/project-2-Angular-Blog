@@ -1,0 +1,12 @@
+<a href="/compose">Write a New Post</a>
+<div class="posts" id="posts-list" ng-repeat="po in posts">
+    <h2>{{ po.title }}</h2>
+    <h4>By {{ po.authorfirstname }} {{ po.authorlastname }}</h4>
+    <h5>{{ po.timestamp | date: 'short'}}</h5>
+    <p><a ng-href="/{{ po.id }}">Read Post</a></p>
+</div>
+
+
+
+
+       
