@@ -35,7 +35,7 @@ router.route('/:id')  //single endpoints
             });
     })
     .put(function(req, res) {
-        procedures.update(req.params.id, req.body.title, req.body.categoryid, req.body.content, )//comes from json message has to match front end
+        procedures.update(req.params.id, req.body.title, req.body.categoryid, req.body.content)//comes from json message has to match front end
         .then(function() {
             res.sendStatus(204);
         }).catch(function(err) {

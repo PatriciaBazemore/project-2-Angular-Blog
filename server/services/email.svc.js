@@ -13,3 +13,4 @@ exports.sendEmail = function(to, from, subject, content) {
         body: mail.toJSON()
 });
     return sg.API(request); //return is here and we can do .then when we import it other places
+}

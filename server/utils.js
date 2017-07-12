@@ -1,4 +1,4 @@
-var bcrypt = require('bcryptjs'); //change second part to bcrypt when i get xcode
+var bcrypt = require('bcrypt'); //change second part to bcrypt when i get xcode
 const SALT_ROUNDS = 12;
 
 exports.encryptPassword = function(pw) {

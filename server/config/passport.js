@@ -27,7 +27,7 @@ function configurePassport(app) {
                     delete user.password;
                     return done(null, user);
                 } else {
-                    return done(null, false { message: loginError });
+                    return done(null, false, { message: loginError });
                 }
             });
             
