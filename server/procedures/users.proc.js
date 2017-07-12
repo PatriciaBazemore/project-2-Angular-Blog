@@ -12,6 +12,6 @@ exports.read = function(id) {
     return db.row('GetUser', [id]);
 }
 
-exports.create = function(email, password, firstName, lastName) {
-    return db.row('CreateUser', [email, password, firstName, lastName]);
+exports.create = function(firstName, lastName, email, password) {
+    return db.row('CreateUser', [firstName, lastName, email, password]);
 }

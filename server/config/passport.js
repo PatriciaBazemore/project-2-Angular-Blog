@@ -7,13 +7,14 @@ var userProc = require('../procedures/users.proc');
 var pool = require('./db').pool;
 
 var utils = require('../utils');
-var loginError = 'Invalid Login Credentials'
+
 
 function configurePassport(app) {
     passport.use(new LocalStrategy ({
         usernameField: 'email',
         passwordField: 'password'
     }, function(email, password, done) {
+        var loginError = 'Invalid Login Credentials';
         user.Proc.readByEmail(email).then(function(user) {
             if (!user) {
                 return done(null, false);
@@ -35,7 +36,7 @@ function configurePassport(app) {
             return done(err);
         });
 }));
-    passport.serializeUser(function(user, done) {
+    passport.serializeUser(function(user, done) { //take user down to minimum identifying factor (id)
         done(null, user.id);
     });
     passport.deserializeUser(function(id, done) {
@@ -46,10 +47,10 @@ function configurePassport(app) {
         });
     });
     var sessionStore = new MySQLStore({
-        createDataTable: true
+        createDataTable: true //creates sessions table and everything it needs to properly function
     }, pool);
 
-    app.use(session({
+    app.use(session({  //turns on sessions
         secret: 'randString(n)',
         store: sessionStore,
         resave: false,
