@@ -7,8 +7,10 @@ var pool = mysql.createPool({
     password: 'Chatt409',
     database: 'AngularBlog'
 });
-
+exports.pool = pool;
 //exports make it available to export to another file  
+
+
 
 exports.rows = function(procedureName, args) {  //procedureName is promise
     return callProcedure(procedureName, args)  //need to return promise

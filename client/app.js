@@ -20,13 +20,23 @@ angular.module('blogger', ['ngRoute', 'ngResource', 'blogger.controllers', 'blog
     })
     .when('/users', {
         templateUrl: 'views/users',
-        controllers: 'UsersController'
+        controllers: 'UsersController',
+        requiresLogin: true,
+        requiresAdmin: true
     })
     .when('/categories', {
         templateUrl: 'views/users',
         controllers: 'CategoriesController'
     })
+    .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginController'
+    })
     .otherwise({
         redirectTo: '/'
     });
 }]);
+
+//.run(['$rootScope', '$location', 'UserService', function($rootScope, $location, UserService) {
+//     $rootScope.$on('$routeChangeStart', function(event), nextRoute, previousRoute) {
+//         if (nextRoute.$$route.rquiresLogin && !UserService.isLoggedIn()) {

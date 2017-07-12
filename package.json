@@ -4,7 +4,8 @@
   "description": "P2 Blogger",
   "main": "server/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "source .variables && nodemon", 
+    "start": "node server/index.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,13 @@
   "homepage": "https://github.com/PatriciaBazemore/project-2-Angular-Blog#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
     "express": "^4.15.3",
-    "mysql": "^2.13.0"
+    "express-mysql-session": "^1.2.1",
+    "express-session": "^1.15.3",
+    "mysql": "^2.13.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "prerender-node": "^2.7.2"
   }
 }

@@ -1,4 +1,12 @@
 angular.module('blogger.controllers', []) 
+.controller('WelcomeController', ['SEOService', '$location', function(SEOService, $location) {
+    SEOService.setSEO({
+        title: 'Welcome',
+        //image: 'http://' + $location.host() + '/images/contact-us-graphic.png',
+        url: $location.url(),
+        description: 'Welcome to my website'
+    });
+}])
 .controller('PostListController', ['$scope', 'Post', '$location', function($scope, Post, $location) {
     $scope.posts = Post.query();  //could do getPosts(); 
 }])
@@ -61,10 +69,28 @@ angular.module('blogger.controllers', [])
         });    
     }
 }])
-
-.controller('UsersController', ['$scope', 'User', function($scope, User) {
-    $scope.users = User.query();
-}])
 .controller('CategoriesController', ['$scope', 'Categories',function($scope, Categories) {
     $scope.categories = Categories.query();
 }])
+.controller('UsersController', ['$scope', 'User','UserService', function($scope, User, UserService) {
+    UserService.requireLogin();  //make it require log in
+    $scope.users = User.query(); //gets all the users and stores it in scope.users
+}])
+.controller('LoginController', ['$scope', 'UserService', '$location', function($scope, UserService, $location) {
+    UserService.me().then(function() {
+        redirect();
+    })
+    $scope.login = function() {
+        UserService.login($scope.email, $scope.password)
+        .then(function() {
+            redirect();
+        }, function(err) {
+            console.log(err);
+        });
+    }
+    function redirect() {
+        var dest = $location.search().dest;
+        if (!dest) { dest = '/'; }
+        $location.replace().path(dest).search('dest', null);
+    }
+}]);
