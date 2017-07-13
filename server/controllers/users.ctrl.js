@@ -42,6 +42,12 @@ router.get('/logout', function(req, res) {
     });
 });
 
+router.get('/me', function(req, res) {
+    res.send(req.user); //this is below logged in handler. so, we know that the user exists
+});
+
+
+
 //actually api/users/ because that's the process we took to get to this file. (service/api.js controllers/users.ctrl.js)
 router.route('/')
     .get(function(req, res) {

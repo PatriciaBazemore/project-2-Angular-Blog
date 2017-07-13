@@ -72,25 +72,25 @@ angular.module('blogger.controllers', [])
 .controller('CategoriesController', ['$scope', 'Categories',function($scope, Categories) {
     $scope.categories = Categories.query();
 }])
-.controller('UsersController', ['$scope', 'User','UserService', function($scope, User, UserService) {
-    UserService.requireLogin();  //make it require log in
-    $scope.users = User.query(); //gets all the users and stores it in scope.users
-}])
 .controller('LoginController', ['$scope', 'UserService', '$location', function($scope, UserService, $location) {
-    UserService.me().then(function() {
-        redirect();
-    })
-    $scope.login = function() {
-        UserService.login($scope.email, $scope.password)
+    UserService.me().then(function() { //auto log in, if serv respond successfully, rememebers then from current session, etc
+        redirect(); //send them where they were trying to get
+    });
+    $scope.login = function() { //not currently logged in, send them to log in 
+        UserService.login($scope.email, $scope.password)  //getting what they type in boxes
         .then(function() {
-            redirect();
+            redirect();  //if successful, go to where they were trying
         }, function(err) {
             console.log(err);
         });
     }
     function redirect() {
-        var dest = $location.search().dest;
-        if (!dest) { dest = '/'; }
-        $location.replace().path(dest).search('dest', null);
+        var dest = $location.search().dest; //uses location to where trying to go 
+        if (!dest) { dest = '/'; } //default to home page
+        $location.replace().path(dest).search('dest', null); //send them back to where they were trying to get and clear out dest param
     }
-}]);
+}])
+.controller('UsersController', ['$scope', 'User','UserService', function($scope, User, UserService) {
+    UserService.requireLogin();  //make it require log in
+    $scope.users = User.query(); //gets all the users and stores it in scope.users
+}])

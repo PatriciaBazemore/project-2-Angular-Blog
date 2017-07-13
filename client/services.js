@@ -8,13 +8,20 @@ angular.module('blogger.services', [])
             return true;
         } else {
             return false;
+        }
     }
- }
-    this.requireLogin = function() {
-        if (!this.isLoggedIn()) { //you are not logged in
+
+    this.isAdmin = function() {
+        if (currentUser && currentUser.role === 'admin') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    this.loginRedirect = function() {
             var current = $location.path();  //stores path to current view
             $location.replace().path('/login').search('dest', current);  //replaces in history so it goes to home page, not /users
-        }
     }
     this.login = function(email, password) {
         return $http({
