@@ -11,4 +11,4 @@ angular.module('blogger.factories', [])
 }]) 
 .factory('Category', ['$resource', function($resource) {
     return $resource('/api/categories/:id', { id: '@id'}); 
-}])
+}]);

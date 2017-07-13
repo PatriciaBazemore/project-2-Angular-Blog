@@ -21,7 +21,7 @@ angular.module('blogger', ['ngRoute', 'ngResource', 'blogger.controllers', 'blog
         requiresAdmin: true //made up requiresAdmin
     })
     .when('/:id/update', {
-        templateUrl: 'views/single_update.html',
+        templateUrl: 'views/update.html',
         controller: 'UpdatePostController'
     })
     .when('/:id', {

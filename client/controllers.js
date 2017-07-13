@@ -10,30 +10,6 @@ angular.module('blogger.controllers', [])
 .controller('PostListController', ['$scope', 'Post', '$location', function($scope, Post, $location) {
     $scope.posts = Post.query();  //could do getPosts(); 
 }])
-.controller('ComposeController', ['$scope', 'Post', 'User', 'Category', '$location', function($scope, Post, User, Category, $location) {
-    $scope.categories = Category.query();
-    $scope.users = User.query();
-    $scope.savePost = function() {
-        var payload = {           //payload
-            title: $scope.title, //gets whatever is typed in newTitle
-            categoryid: $scope.category, // here, you would select the select box using JQuery and get its current value///value of select box
-            userid: $scope.user,   //select box w/users
-            content: $scope.content //text area
-        }; 
-        var p = new Post(payload);
-        p.$save(function(success) {  //p.$save makes it do a post request to the collection
-            $scope.title = '';
-            $scope.category = '';
-            $scope.user = '';
-            $scope.content = '';
-            $scope.posts = Post.query();
-            $location.replace().path('/'); 
-        }, function(err) {
-            console.log(err);
-        });
-        
-    }
-}])
 .controller('SinglePostController', ['$scope', 'Post', '$routeParams', '$location', function($scope, Post, $routeParams, $location) { 
     $scope.post = Post.get({ id: $routeParams.id });  //query gets all, get is for one..$scope.post is a resource
     //$scope.users = User.get({ userid = $routeParams.userid});
@@ -51,21 +27,29 @@ angular.module('blogger.controllers', [])
         } 
     }      
 }])
-    
+.controller('ComposeController', ['$scope', 'Post', 'User', 'Category', '$location', function($scope, Post, User, Category, $location) {
+    $scope.categories = Category.query();
+    $scope.users = User.query();
+    $scope.save = function() {
+         var p = new Post($scope.post);
+         p.$save(function(success) {  //p.$save makes it do a post request to the collection
+            $location.path('/'); 
+        }, function(err) {
+            console.log(err);
+        }); 
+    }
+}]) 
 .controller('UpdatePostController', [ '$scope', 'Post', 'Category', '$location', '$routeParams', function($scope, Post, Category, $location, $routeParams) { 
     $scope.categories = Category.query();
     $scope.post = Post.get({ id: $routeParams.id }, function() {  //get a specific post
         $scope.post.categoryid = String($scope.post.categoryid);
     });
 
-
-    $scope.updatePost = function() {
+    $scope.save = function() {
         $scope.post.$update(function() {   //is modeled to post.content, take the data and send to server to update
             //$location.path('/posts/' + $routeParams.someId); //this would erase the history of it, no back to it
             //window.history.back();  //back to single post view
             $location.replace().path('/' + $routeParams.id);
-        }, function(err) {
-            console.log(err);
         });    
     }
 }])
@@ -98,6 +82,7 @@ angular.module('blogger.controllers', [])
         var u = new User($scope.newUser);
         u.$save(function(){
             $scope.newUser = {};
+            $scope.users = User.query();
         });
     }
 }]);

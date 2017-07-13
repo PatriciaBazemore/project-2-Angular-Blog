@@ -10,8 +10,6 @@ var pool = mysql.createPool({
 exports.pool = pool;
 //exports make it available to export to another file  
 
-
-
 exports.rows = function(procedureName, args) {  //procedureName is promise
     return callProcedure(procedureName, args)  //need to return promise
         .then(function(resultsets) {  
@@ -32,7 +30,6 @@ exports.empty = function(procedureName, args) {    //use for insert, delet--- we
             return;
         });
 }
-
 
 function callProcedure(procedureName, args) {
     return new Promise(function(resolve, reject) {
