@@ -91,6 +91,13 @@ angular.module('blogger.controllers', [])
     }
 }])
 .controller('UsersController', ['$scope', 'User','UserService', function($scope, User, UserService) {
-    UserService.requireLogin();  //make it require log in
     $scope.users = User.query(); //gets all the users and stores it in scope.users
-}])
+    
+    
+    $scope.createUser = function() {
+        var u = new User($scope.newUser);
+        u.$save(function(){
+            $scope.newUser = {};
+        });
+    }
+}]);

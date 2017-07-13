@@ -1,11 +1,18 @@
+<form ng-submit="createUser()">
+    <input type="text" placeholder="First Name" ng-model="newUser.firstname">
+    <input type="text" placeholder="Last Name" ng-model="newUser.lastname"><br>
+    <input type="email" placeholder="Email" ng-model="newUser.email">
+    <input type="password" placeholder="Password" ng-model="newUser.password"><br>
+    <input type="submit" value="Create">
+</form>
 <h1>User List</h1>
-<system-user ng-repeat="u in users" user-data="u"></system-user> 
+<div class="user-container"> 
+    <div ng-repeat="user in users">
+        <h3>{{ user.firstname }} {{ user.lastname }}<h3>
+        <h4>{{ user.email }}</h4>
+        <h5>{{ user.role }}</h5>
+    </div>
+</div>
+<!--<user ng-repeat="u in users" user-data="u"></user> 
+using user directive-->
 
-
-<!--<div class="users" ng-repeat="u in users">
-<h3>{{ u.firstname }} {{ u.lastname }}<h3>
-<h5>{{ u.email }}</h5>
-</div>-->
-
-
-<!--using user directive-->

@@ -7,7 +7,7 @@ angular.module('blogger.factories', [])
     });
 }])
 .factory('User', ['$resource', function($resource) {  //need a factory for every resource
-    return $resource('/api/users/:id', { id: '@id'});  //must have the specific, not just users/ 
+    return $resource('/api/users/:id');  //must have the specific, not just users/ 
 }]) 
 .factory('Category', ['$resource', function($resource) {
     return $resource('/api/categories/:id', { id: '@id'}); 
