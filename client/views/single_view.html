@@ -1,9 +1,10 @@
-
-<div ng-model="posts">   
+<div class="list-group">
+<div class="list-group-item">   
         <h2>{{ post.title }}</h2>
         <h4>{{  post.category }}</h4>
         <h5>{{ post.timestamp | date: 'short'}}</h5>
         <p>{{ post.content }}</p>
-         <button ng-click="editPost()">Edit</button>
-         <button ng-click="deletePost()">Delete</button>
+         <button class="btn btn-primary" ng-click="editPost()">Edit</button>
+         <button class="btn btn-warning" ng-click="deletePost()">Delete</button>
+         <button class="btn btn-success" ng-click="returnHome()">All Posts</button>
 </div>

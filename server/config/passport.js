@@ -14,7 +14,7 @@ function configurePassport(app) {
         passwordField: 'password'
     }, function(email, password, done) {
         var loginError = 'Invalid Login Credentials';
-        user.Proc.readByEmail(email).then(function(user) {
+        userProc.readByEmail(email).then(function(user) {
             if (!user) {
                 return done(null, false);
             }

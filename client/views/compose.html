@@ -1,17 +1,29 @@
 
-<h1>Compose new blog</h1>
-<form ng-submit="save()">
-        <input type="text" ng-model="post.title" placeholder="Title">
-        <select ng-model="post.categoryid">
-                <option value="">Select a Category</option>
-                <option ng-repeat="category in categories" value="{{ category.id }}">{{ category.name }}</option>
-                <!--<option ng-repeat="user in users" value="{{ user.id }}">{{ user.name }}</option>-->
-        </select> 
-        <select ng-model="post.userid">
-                <option value="">Select a User</option>
-                <option value="{{ user.id }}" ng-repeat="user in users">{{ user.firstname }} {{ user.lastname }}</option>
-                <!--<option ng-repeat="user in users" value="{{ user.id }}">{{ user.name }}</option>-->
-        </select>   
-        <textarea ng-model="post.content"></textarea>
-        <input type="submit" value="Save">
+<div class="page-header">
+        <h1>Compose</h1>
+</div>
+<form class="my-form" ng-submit="save()">
+        <div class="form-group">
+                <input type="text" class="form-control" ng-model="post.title" placeholder="Title">
+        </div>
+        <div class="form-group">
+                <select ng-model="post.categoryid" class="form-control">
+                        <option value="">Select a Category</option>
+                        <option ng-repeat="category in categories" value="{{ category.id }}">{{ category.name }}</option>
+                        <!--<option ng-repeat="user in users" value="{{ user.id }}">{{ user.name }}</option>-->
+                </select> 
+        </div>
+        <div class="form-group">
+                <select ng-model="post.userid" class="form-control">
+                        <option value="">Select a User</option>
+                        <option value="{{ user.id }}" ng-repeat="user in users">{{ user.firstname }} {{ user.lastname }}</option>
+                        <!--<option ng-repeat="user in users" value="{{ user.id }}">{{ user.name }}</option>-->
+                </select>   
+        </div>
+        <div class="form-group">
+                <textarea ng-model="post.content" class="form-control"></textarea>
+        </div>
+        <input type="submit" class="btn btn-info pull-right" value="Save">
 </form>
+
+

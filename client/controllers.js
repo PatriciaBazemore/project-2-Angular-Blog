@@ -25,7 +25,10 @@ angular.module('blogger.controllers', [])
                 $location.replace().path('/');
             });           
         } 
-    }      
+    }
+    $scope.returnHome = function()  {
+        $location.replace().path('/');
+    }     
 }])
 .controller('ComposeController', ['$scope', 'Post', 'User', 'Category', '$location', function($scope, Post, User, Category, $location) {
     $scope.categories = Category.query();
@@ -69,9 +72,10 @@ angular.module('blogger.controllers', [])
         });
     }
     function redirect() {
-        var dest = $location.search().dest; //uses location to where trying to go 
-        if (!dest) { dest = '/'; } //default to home page
-        $location.replace().path(dest).search('dest', null); //send them back to where they were trying to get and clear out dest param
+        // var dest = $location.search().dest; //uses location to where trying to go 
+        // if (!dest) { dest = '/'; } //default to home page
+        // $location.replace().path(dest).search('dest', null); //send them back to where they were trying to get and clear out dest param
+        $location.path('/');
     }
 }])
 .controller('UsersController', ['$scope', 'User','UserService', function($scope, User, UserService) {
