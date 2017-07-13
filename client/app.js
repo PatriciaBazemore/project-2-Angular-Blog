@@ -17,8 +17,8 @@ angular.module('blogger', ['ngRoute', 'ngResource', 'blogger.controllers', 'blog
     .when('/users', {
         templateUrl: 'views/users',
         controllers: 'UsersController',
-        //requiresLogin: true, //made up requiresLogin
-        //requiresAdmin: true //made up requiresAdmin
+        requiresLogin: true, //made up requiresLogin
+        requiresAdmin: true //made up requiresAdmin
     })
     .when('/:id/update', {
         templateUrl: 'views/single_update.html',
