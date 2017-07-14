@@ -89,4 +89,37 @@ angular.module('blogger.controllers', [])
             $scope.users = User.query();
         });
     }
+}])
+.controller('DonationController',['$scope', 'Donation', function($scope, Donation){
+   var elements = stripe.elements();
+   var card = elements.create('card');
+
+   card.mount('#card-field');
+
+   $scope.processDonation = function() {
+       stripe.createToken(card, {
+           name: $scope.name,
+           address_line1: $scope.line1,
+           address_line2: $scope.line2,
+           address_city: $scope.city,
+           address_state: $scope.state
+       }).then(function(result){
+           if(result.error){  //result has property error and message
+               $scope.errorMessage = result.error.message;
+           }else{
+               //result.token is the card token
+               var d = new Donation({
+                   token: result.token.id,  //tok...really long string...card token
+                   amount: $scope.amount  //typed from field we created
+               });
+               d.$save(function() {  //it's a resoures, just save it
+                   alert('Thank you for the donation');
+                   $location.path('/'); 
+               }, function(err) {   //card declined
+                   console.log(err);
+               });
+           }
+       });
+   }
 }]);
+

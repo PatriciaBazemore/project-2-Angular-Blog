@@ -11,4 +11,7 @@ angular.module('blogger.factories', [])
 }]) 
 .factory('Category', ['$resource', function($resource) {
     return $resource('/api/categories/:id', { id: '@id'}); 
-}]);
+}])
+.factory('Donation', ['$resoure', function($resource) {
+    return $resource('/api/donations/:id'); //must have detail even if yout don't use it...could've used $http instead of resourse
+}])

@@ -1,0 +1,42 @@
+
+   <div class="page-header">
+       <h1>Donate</h1>
+   </div>
+        <form class="my-form" ng-submit="processDonation()">
+            <div class="form-group">
+                <input class="form-control" type="number" step=".01" ng-model="amount" placeholder="Amount">
+            </div>
+            <div class="form-group">
+                <label for="card-field">Credit Card</label>
+            </div>
+            <div class="form-control" id="card-field"></div>
+            </div>
+            <div class="form-group">
+                <label>Billing Address</label>
+                <input class="form-control" type="text" placeholder="Cardholder Name" ng-model="name">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Line 1" ng-model="line1">
+            </div>    
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Line 2" ng-model="line2">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="City" ng-model="city">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="State" ng-model="state">
+            </div>
+            <div class="alert alert-danger" role="alert" ng-hide="errorMessage.length === 0">{{ errorMessage }}</div>
+            <!--<div class="alert alert-danger" ng-show="errorMessage.length >= 1" role="alert">{{errorMessage}}</div>-->
+            <input class="btn btn-info" type="submit" value="Donate">  
+        </form>
+
+
+<!--<form ng-submit="process()">
+    <input type="number" ng-model="amount">
+    <label for="card-field">Credit Card</label>
+    <div id="card-field"></div>
+    <p>{{ error }}</p>
+    <input type="submit" value="Donate">
+</form>-->

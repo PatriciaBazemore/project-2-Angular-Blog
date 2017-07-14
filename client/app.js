@@ -32,6 +32,10 @@ angular.module('blogger', ['ngRoute', 'ngResource', 'blogger.controllers', 'blog
         templateUrl: 'views/users',
         controllers: 'CategoriesController'
     })
+    .when('/donations', {
+        templateUrl: 'views/donate.html',
+        controllers: 'DonationController'
+    })
     .otherwise({
         redirectTo: '/'
     });
