@@ -1,7 +1,10 @@
-.my-form{
+.my-form {
     max-width: 300px;
 }
-
+#createuserform {
+    max-width: 300px;
+    float: right;
+}
 /*.btn.btn-info {
     background-color: purple;  
 } doesnt work*/

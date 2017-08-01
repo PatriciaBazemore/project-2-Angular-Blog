@@ -21,7 +21,7 @@ angular.module('blogger.services', [])
 
     this.loginRedirect = function() {
             var current = $location.path();  //stores path to current view
-            $location.replace().path('/login').search('dest', current);  //replaces in history so it goes to home page, not /users
+            $location.path('/login');  //replaces in history so it goes to home page, not /users
     }
     this.login = function(email, password) {
         return $http({

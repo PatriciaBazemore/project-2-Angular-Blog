@@ -7,6 +7,20 @@ angular.module('blogger.controllers', [])
         description: 'Welcome to my website'
     });
 }])
+.controller('HomeController', ['$scope', '$location', function($scope, $location) {
+    $scope.login = function() {
+        $location.path('/login');    
+    }  
+    $scope.posts = function() {
+        $location.path('/bloglist');
+    }
+    $scope.users = function() {
+        $location.path('/users');
+    }
+    $scope.donate = function() {
+        $location.path('/donate');
+    }
+}])
 .controller('PostListController', ['$scope', 'Post', '$location', function($scope, Post, $location) {
     $scope.posts = Post.query();  //could do getPosts(); 
 }])
@@ -15,7 +29,7 @@ angular.module('blogger.controllers', [])
     //$scope.users = User.get({ userid = $routeParams.userid});
 
     $scope.editPost = function() {
-        $location.path('/' + $routeParams.id + '/update');
+        $location.path('/bloglist/' + $routeParams.id + '/update');
         // console.log('/' + $routeParams.id + '/update');
         // window.location.pathname = '/posts/' + $routeParams.id + '/update';
     }    
@@ -27,7 +41,7 @@ angular.module('blogger.controllers', [])
         } 
     }
     $scope.returnHome = function()  {
-        $location.replace().path('/');
+        $location.replace().path('/bloglist/');
     }     
 }])
 .controller('ComposeController', ['$scope', 'Post', 'User', 'Category', '$location', function($scope, Post, User, Category, $location) {
@@ -79,9 +93,6 @@ angular.module('blogger.controllers', [])
     }
 }])
 .controller('UsersController', ['$scope', 'User','UserService', function($scope, User, UserService) {
-    $scope.users = User.query(); //gets all the users and stores it in scope.users
-    
-    
     $scope.createUser = function() {
         var u = new User($scope.newUser);
         u.$save(function(){
@@ -89,6 +100,7 @@ angular.module('blogger.controllers', [])
             $scope.users = User.query();
         });
     }
+    $scope.users = User.query(); //gets all the users and stores it in scope.users
 }])
 .controller('DonationController',['$scope', 'Donation', function($scope, Donation){
    var elements = stripe.elements();

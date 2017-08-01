@@ -11,7 +11,7 @@ router.post('/', function(req, res) {
     let content = `<h3>You have a new message</h3>
                     <h5>From: ${req.body.email}</h5>
                     <p>${req.body.message}</p>`;
-    mailService.sendEmail('trishbazemore@gmail.com', 'no-reply@trishbazemore.com', 'New Contact Form Submission')
+    mailService.sendEmail('trishbazemore@gmail.com', 'no-reply@trishbazemore.com', 'New Contact Form Submission', content)
     .then(function(success) {
         console.log(success);
         res.sendStatus(201);

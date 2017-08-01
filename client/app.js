@@ -2,8 +2,12 @@ angular.module('blogger', ['ngRoute', 'ngResource', 'blogger.controllers', 'blog
 .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) { //configs, calls for and receives it, must put in ng-route in html and above
     $locationProvider.html5Mode(true);
     $routeProvider
-    .when('/', {                            //when this is asked for
-        templateUrl: 'views/list.html',  //go here
+    .when('/', {
+        templateUrl: 'views/home.html',
+        controller: 'HomeController'
+    })
+    .when('/bloglist', {                            //when this is asked for
+        templateUrl: 'views/bloglist.html',  //go here
         controller:  'PostListController'    //do this, dont' need on the welcome page
     })
     .when('/compose', {
@@ -15,7 +19,7 @@ angular.module('blogger', ['ngRoute', 'ngResource', 'blogger.controllers', 'blog
         controller: 'LoginController'
     })
     .when('/users', {
-        templateUrl: 'views/users',
+        templateUrl: 'views/users.html',
         controllers: 'UsersController',
         requiresLogin: true, //made up requiresLogin
         requiresAdmin: true //made up requiresAdmin
@@ -24,17 +28,17 @@ angular.module('blogger', ['ngRoute', 'ngResource', 'blogger.controllers', 'blog
         templateUrl: 'views/update.html',
         controller: 'UpdatePostController'
     })
+    .when('/categories', {
+        templateUrl: 'views/categories.html',
+        controllers: 'CategoriesController'
+    })
+    .when('/donate', {
+        templateUrl: 'views/donate.html',
+        controllers: 'DonationController'
+    })
     .when('/:id', {
         templateUrl: 'views/single_view.html',
         controller: 'SinglePostController'
-    })
-    .when('/categories', {
-        templateUrl: 'views/users',
-        controllers: 'CategoriesController'
-    })
-    .when('/donations', {
-        templateUrl: 'views/donate.html',
-        controllers: 'DonationController'
     })
     .otherwise({
         redirectTo: '/'
@@ -48,7 +52,7 @@ angular.module('blogger', ['ngRoute', 'ngResource', 'blogger.controllers', 'blog
             UserService.loginRedirect();
         } else if (nextRoute.$$route.requiresAdmin && !UserService.isAdmin()) {
             event.preventDefault();
-            $location.replace().path('/');
+            $location.path('/');
         }
     });
 }]);

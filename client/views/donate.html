@@ -27,8 +27,8 @@
             <div class="form-group">
                 <input class="form-control" type="text" placeholder="State" ng-model="state">
             </div>
-            <div class="alert alert-danger" role="alert" ng-hide="errorMessage.length === 0">{{ errorMessage }}</div>
-            <!--<div class="alert alert-danger" ng-show="errorMessage.length >= 1" role="alert">{{errorMessage}}</div>-->
+            <!--<div class="alert alert-danger" role="alert" ng-hide="errorMessage.length === 0">{{ errorMessage }}</div>-->
+            <div class="alert alert-danger" ng-show="errorMessage.length >= 1" role="alert">{{errorMessage}}</div>
             <input class="btn btn-info" type="submit" value="Donate">  
         </form>
 
